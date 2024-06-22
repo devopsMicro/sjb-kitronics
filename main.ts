@@ -539,8 +539,18 @@ namespace Kitronik_Robotics_Board {
 // calculate number of steps
 
 
-    //% block="Initialize Stepper:  Home %homePin Dir+ %directioPin Pul+ %pulsePin Steps %maxSteps"
-    export function initLinearActuatorParams(linearActuator: LinearActuators, homePin: DigitalPin, maxSteps: number = 1000): void {
+    /**
+     * Initialize LinearActuator 
+     * @param linearActuator  actuator these settings are for
+     * @param homePin pin number home switch is connected to
+     * @param maxSteps max number of steps
+     */
+    //% subcategory=linearActuator
+    //% group=Motors
+    //% blockId=kitronik_linear_actuator_init
+    //% block="%linearActuator|HomePin %homePin| Max Steps %maxSteps|"
+    //% weight=85 blockGap=8
+    export function initLinearActuator(linearActuator: LinearActuators, homePin: DigitalPin, maxSteps: number = 1000): void {
         linearActuatorHome[linearActuator] = homePin
         linearActuatorMaxSteps[linearActuator] = maxSteps
       
