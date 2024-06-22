@@ -546,6 +546,15 @@ namespace Kitronik_Robotics_Board {
       
     }
 
+    /**
+     * ask linearActuator to go to the home position, the end with the switch
+     * @param linearActuator to move to home
+     */
+    //% subcategory=linearActuator
+    //% group=Motors
+    //% blockId=kitronik_linear_actuator_home
+    //% block="%linearActuator"
+    //% weight=85 blockGap=8
     export function goHome(linearActuator: LinearActuators)
     {
         stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 200 )
@@ -554,7 +563,6 @@ namespace Kitronik_Robotics_Board {
 
     /**
      * Send Linear actuator to a location
-     * if the PCA has not yet been initialised calls the initialisation routine.
      * @param stepper which stepper motor to turn on
      * @param newLocation   location to go to
      * 
