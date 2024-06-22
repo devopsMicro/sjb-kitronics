@@ -3,7 +3,7 @@
  * Blocks for driving the Kitronik All-in-one Robotics Board
  *   adding stepper control for linear actuator
  */
-//% weight=100 color=#00A654 icon="\uf1b6" block="Robotics"
+//% weight=100 color=#00A654 icon="\uf1b6" block="SJB Robotics"
 //% groups='["Servos", "Motors"]'
 namespace Kitronik_Robotics_Board {
     //Constants 
@@ -59,6 +59,16 @@ namespace Kitronik_Robotics_Board {
         //% block="Stepper 2"
         Stepper2
     }
+     // List of LinearActuator for the Linear Actuator blocks to use.
+    // LinearActuator 1 would connect to Motor 1 & Motor 2
+    // LinearActuator 2 would connect to Motor 3 & Motor 4
+    export enum LinearActuators {
+        //% block="LinearActuator 1"
+        LinearActuator1,
+        //% block="LinearActuator 2"
+        LinearActuator2
+    }
+
 
     // Directions the motors can rotate.
     export enum MotorDirection {
@@ -84,6 +94,11 @@ namespace Kitronik_Robotics_Board {
     let initalised = false //a flag to allow us to initialise without explicitly calling the secret incantation
     export let stepper1Steps = 200 //Default value for the majority of stepper motors; can be altered via a block if neccessary for a particular stepper motor
     export let stepper2Steps = 200 //Default value for the majority of stepper motors; can be altered via a block if neccessary for a particular stepper motor
+
+    // vars for linearActuator
+    export let linearActuatorHome: DigitalPin[] = [ 13,13,13]   // what is the home pin for actuator 1 and 2  (zeo is just dummy)
+    export let linearActuatorMaxSteps = [1000,1000,1000]
+    export let linearActuatorSteper = [StepperMotors.Stepper1, StepperMotors.Stepper2]
 
     //Trim the servo pulses. These are here for advanced users, and not exposed to blocks.
     //It appears that servos I've tested are actually expecting 0.5 - 2.5mS pulses, 
@@ -510,6 +525,31 @@ namespace Kitronik_Robotics_Board {
             }
             stepCounter += 1
         }
+    }
+
+
+
+//    -------------   LinearActuator ----------
+// to do
+// go home  set linearlocation to zero
+
+// set max length in steps default value??
+// get current position in steps
+// calculate direction
+// calculate number of steps
+
+
+    //% block="Initialize Stepper:  Home %homePin Dir+ %directioPin Pul+ %pulsePin Steps %maxSteps"
+    export function initLinearActuatorParams(linearActuator: LinearActuators, homePin: DigitalPin, maxSteps: number = 1000): void {
+        linearActuatorHome[linearActuator] = homePin
+        linearActuatorMaxSteps[linearActuator] = maxSteps
+      
+    }
+
+    export function goHome(linearActuator: LinearActuators)
+    {
+        stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 200 )
+
     }
 
     /**
