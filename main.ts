@@ -563,7 +563,7 @@ namespace Kitronik_Robotics_Board {
     //% subcategory=linearActuator
     //% group=Motors
     //% blockId=kitronik_linear_actuator_home
-    //% block="%linearActuator"
+    //% block="move %linearActuator to home"
     //% weight=85 blockGap=8
     export function goHome(linearActuator: LinearActuators)
     {
@@ -580,7 +580,7 @@ namespace Kitronik_Robotics_Board {
     //% subcategory=linearActuator
     //% group=Motors
     //% blockId=kitronik_linear_actuator_go_to
-    //% block="%linearActuator|%newLocation|location"
+    //% block="Move %linearActuator| to %newLocation|location"
     //% weight=85 blockGap=8
     export function linearActuatorGoTo(stepper: StepperMotors, newLocation: number): void {
 
