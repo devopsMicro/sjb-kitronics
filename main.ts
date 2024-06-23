@@ -603,9 +603,9 @@ namespace Kitronik_Robotics_Board {
     //% subcategory=linearActuator
     //% group=Motors
     //% blockId=kitronik_linear_actuator_go_to
-    //% block="Move %linearActuator| to %newLocation|location"
+    //% block="Move %LinearActuator| to %newLocation|location"
     //% weight=85 blockGap=8
-    export function linearActuatorGoTo(stepper: StepperMotors, newLocation: number): void 
+    export function linearActuatorGoTo(linearActuator: LinearActuators, newLocation: number): void
     {
 
     }
