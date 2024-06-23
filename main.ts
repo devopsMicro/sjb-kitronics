@@ -538,9 +538,8 @@ namespace Kitronik_Robotics_Board {
 // go home  set linearlocation to zero
 
 // set max length in steps default value??
-// get current position in steps
-// calculate direction
-// calculate number of steps
+
+
 
 
     /**
@@ -570,8 +569,11 @@ namespace Kitronik_Robotics_Board {
     //% weight=85 blockGap=8
     export function goHome(linearActuator: LinearActuators)
     {
-        stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 200 )
-
+        while (pins.digitalReadPin(linearActuatorHome[linearActuator] ) == 1) 
+        {
+            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Forward, 2)
+        }
+        linearActuatorLocation[linearActuator] =0 
     }
 
     function fromStepsToPercent(linearActuator: LinearActuators, steps : number) :number
