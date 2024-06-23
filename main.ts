@@ -552,7 +552,7 @@ namespace Kitronik_Robotics_Board {
     //% group=Motors
     //% blockId=kitronik_linear_actuator_init
     //% block=" Initialize  %LinearActuator| HomePin %homePin|"
-    //% weight=50 blockGap=8
+    //% weight=100 blockGap=8
     export function initLinearActuator(linearActuator: LinearActuators, homePin: DigitalPin): void {
         linearActuatorHome[linearActuator] = homePin
        
@@ -566,7 +566,7 @@ namespace Kitronik_Robotics_Board {
     //% group=Motors
     //% blockId=kitronik_linear_actuator_home
     //% block="move %linearActuator to home"
-    //% weight=85 blockGap=8
+    //% weight=90 blockGap=8
     export function goHome(linearActuator: LinearActuators)
     {
         while (pins.digitalReadPin(linearActuatorHome[linearActuator] ) == 1) 
@@ -596,7 +596,7 @@ namespace Kitronik_Robotics_Board {
     //% group=Motors
     //% blockId=kitronik_linear_actuator_get location
     //% block="get %LinearActuator location"
-    //% weight=85 blockGap=8
+    //% weight=70 blockGap=8
     export function getLinearActuatorLocation(linearActuator: LinearActuators) :number
     {
         return (fromStepsToPercent(linearActuator, linearActuatorLocation[linearActuator]))
@@ -613,7 +613,7 @@ namespace Kitronik_Robotics_Board {
     //% group=Motors
     //% blockId=kitronik_linear_actuator_go_to
     //% block="Move %LinearActuator| to %newLocation|percent"
-    //% weight=85 blockGap=8
+    //% weight=50 blockGap=8
     export function linearActuatorGoTo(linearActuator: LinearActuators, newLocation: number): void
     {
         // range check
