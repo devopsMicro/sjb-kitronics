@@ -572,7 +572,7 @@ namespace Kitronik_Robotics_Board {
         while (pins.digitalReadPin(linearActuatorHome[linearActuator] ) == 1) 
         {
             // go backwards
-            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 3)
+            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 4)
         }
         linearActuatorLocation[linearActuator] =0 
     }
