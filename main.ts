@@ -579,6 +579,12 @@ namespace Kitronik_Robotics_Board {
         return (Math.map(steps, 0, linearActuatorMaxSteps[linearActuator], 0, 100))
     }
 
+    function fromPercentToSteps(linearActuator: LinearActuators, percent: number): number
+    {
+        return (Math.map(percent, 0, 100, 0, linearActuatorMaxSteps[linearActuator]))
+    }
+    
+
     /**
       * return the current location of the linearActuator
       * @param linearActuator 
@@ -603,10 +609,30 @@ namespace Kitronik_Robotics_Board {
     //% subcategory=linearActuator
     //% group=Motors
     //% blockId=kitronik_linear_actuator_go_to
-    //% block="Move %LinearActuator| to %newLocation|location"
+    //% block="Move %LinearActuator| to %newLocation|percent"
     //% weight=85 blockGap=8
     export function linearActuatorGoTo(linearActuator: LinearActuators, newLocation: number): void
     {
+        // convert to steps
+        let destinationStep = fromPercentToSteps(linearActuator, newLocation)
+        let currentStep = linearActuatorLocation[linearActuator]
+        // compare to current step location
+        if (destinationStep > currentStep)
+        {
+            // go forward
+            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Forward, destinationStep - currentStep)
+
+        }
+        else
+        {
+            // go backwards
+            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, currentStep - destinationStep)
+
+
+        }
+     
+        // up date 
+        linearActuatorLocation[linearActuator] = destinationStep
 
     }
     
