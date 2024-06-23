@@ -1,5 +1,9 @@
 
 /**
+ * This code extends the original code by Kitronik
+ *   I try add a set of routines for a linear Actuator
+ *   Thanks to the well written code by Kitronics adding was support was easy, thank you
+ * 
  * Blocks for driving the Kitronik All-in-one Robotics Board
  *   adding stepper control for linear actuator
  */
