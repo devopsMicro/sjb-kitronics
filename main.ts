@@ -576,12 +576,12 @@ namespace Kitronik_Robotics_Board {
 
     function fromStepsToPercent(linearActuator: LinearActuators, steps : number) :number
     {
-        return (Math.map(steps, 0, linearActuatorMaxSteps[linearActuator], 0, 100))
+        return (Math.round(Math.map(steps, 0, linearActuatorMaxSteps[linearActuator], 0, 100)))
     }
 
     function fromPercentToSteps(linearActuator: LinearActuators, percent: number): number
     {
-        return (Math.map(percent, 0, 100, 0, linearActuatorMaxSteps[linearActuator]))
+        return (Math.round(Math.map(percent, 0, 100, 0, linearActuatorMaxSteps[linearActuator])))
     }
     
 
