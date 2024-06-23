@@ -548,12 +548,11 @@ namespace Kitronik_Robotics_Board {
     //% subcategory=linearActuator
     //% group=Motors
     //% blockId=kitronik_linear_actuator_init
-    //% block="%linearActuator|HomePin %homePin| Max Steps %maxSteps|"
+    //% block=" Initialize LinearActuator %linearActuator|HomePin %homePin|"
     //% weight=85 blockGap=8
-    export function initLinearActuator(linearActuator: LinearActuators, homePin: DigitalPin, maxSteps: number = 1000): void {
+    export function initLinearActuator(linearActuator: LinearActuators, homePin: DigitalPin): void {
         linearActuatorHome[linearActuator] = homePin
-        linearActuatorMaxSteps[linearActuator] = maxSteps
-      
+       
     }
 
     /**
