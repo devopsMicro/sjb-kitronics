@@ -552,7 +552,7 @@ namespace Kitronik_Robotics_Board {
     //% group=Motors
     //% blockId=kitronik_linear_actuator_init
     //% block=" Initialize  %LinearActuator| HomePin %homePin|"
-    //% weight=85 blockGap=8
+    //% weight=50 blockGap=8
     export function initLinearActuator(linearActuator: LinearActuators, homePin: DigitalPin): void {
         linearActuatorHome[linearActuator] = homePin
        
@@ -572,7 +572,7 @@ namespace Kitronik_Robotics_Board {
         while (pins.digitalReadPin(linearActuatorHome[linearActuator] ) == 1) 
         {
             // go backwards
-            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 4)
+            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 3)
         }
         linearActuatorLocation[linearActuator] =0 
     }
@@ -616,6 +616,15 @@ namespace Kitronik_Robotics_Board {
     //% weight=85 blockGap=8
     export function linearActuatorGoTo(linearActuator: LinearActuators, newLocation: number): void
     {
+        // range check
+        if (newLocation > 100 )
+        {
+            newLocation = 100
+        }
+        if (newLocation < 0) {
+            newLocation = 0
+        }
+
         // convert to steps
         let destinationStep = fromPercentToSteps(linearActuator, newLocation)
         let currentStep = linearActuatorLocation[linearActuator]
