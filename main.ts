@@ -103,7 +103,7 @@ namespace Kitronik_Robotics_Board {
     }
     // vars for linearActuator
     export let linearActuatorHome: DigitalPin[] = [ 13,13]   // what is the home pin for actuator 1 and 2 
-    export let linearActuatorMaxSteps = [2400,2400]
+    export let linearActuatorMaxSteps = [2100,2100]
     export let linearActuatorSteper = [StepperMotors.Stepper1, StepperMotors.Stepper2]
     export let linearActuatorLocation = [-1,-1]  // current location, at first unknown
 
