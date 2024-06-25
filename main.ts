@@ -629,7 +629,7 @@ namespace Kitronik_Robotics_Board {
             newLocation = 0
         }
 
-        if(newLocation = 0)
+        if(newLocation == 0)
         {
             //just go home. will readjust any drift in belt
             goHome(linearActuator)
