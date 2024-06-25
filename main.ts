@@ -629,27 +629,30 @@ namespace Kitronik_Robotics_Board {
             newLocation = 0
         }
 
-        // convert to steps
-        let destinationStep = fromPercentToSteps(linearActuator, newLocation)
-        let currentStep = linearActuatorLocation[linearActuator]
-        // compare to current step location
-        if (destinationStep > currentStep)
+        if(newLocation = 0)
         {
-            // go forward
-            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Forward, destinationStep - currentStep)
-
+            //just go home. will readjust any drift in belt
+            goHome(linearActuator)
         }
         else
-        {
-            // go backwards
-            stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, currentStep - destinationStep)
-
-
+        {   // home sow we need calculate how to get there
+            // convert to steps
+            let destinationStep = fromPercentToSteps(linearActuator, newLocation)
+            let currentStep = linearActuatorLocation[linearActuator]
+            // compare to current step location
+            if (destinationStep > currentStep)
+            {
+                // go forward
+                stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Forward, destinationStep - currentStep)
+            }
+            else
+            {
+                // go backwards
+                stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, currentStep - destinationStep)
+            }
+                // update 
+            linearActuatorLocation[linearActuator] = destinationStep
         }
-     
-        // up date 
-        linearActuatorLocation[linearActuator] = destinationStep
-
     }
     
 }
