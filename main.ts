@@ -593,6 +593,9 @@ namespace Kitronik_Robotics_Board {
             stepperMotorTurnSteps(linearActuatorSteper[linearActuator], MotorDirection.Reverse, 4)
         }
         linearActuatorLocation[linearActuator] =0 
+        if (linearActuatorAutoOff[linearActuator]) {
+            turnOffAllStepers(linearActuator)
+        }
     }
 
     function fromStepsToPercent(linearActuator: LinearActuators, steps : number) :number
