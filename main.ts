@@ -106,6 +106,7 @@ namespace Kitronik_Robotics_Board {
     export let linearActuatorMaxSteps = [2150,2150]
     export let linearActuatorSteper = [StepperMotors.Stepper1, StepperMotors.Stepper2]
     export let linearActuatorLocation = [-1,-1]  // current location, at first unknown
+    export let linearActuatorAutoOff = [true,true]   // turn all motors off after linearActuator at location, save power reduce heat
 
 
     //Trim the servo pulses. These are here for advanced users, and not exposed to blocks.
@@ -544,6 +545,19 @@ namespace Kitronik_Robotics_Board {
 // set max length in steps default value??
 
 
+    function turnOffAllStepers(linearActuator: LinearActuators)
+    {
+        if (linearActuator == LinearActuators.LinearActuator1)
+        {
+            motorOff(Motors.Motor1)
+            motorOff(Motors.Motor2)
+        }
+        else
+        {
+            motorOff(Motors.Motor3)
+            motorOff(Motors.Motor4)
+        }
+    }
 
 
     /**
@@ -652,6 +666,10 @@ namespace Kitronik_Robotics_Board {
             }
                 // update 
             linearActuatorLocation[linearActuator] = destinationStep
+        }
+        if (linearActuatorAutoOff[linearActuator])
+        {
+            turnOffAllStepers(linearActuator)
         }
     }
     
